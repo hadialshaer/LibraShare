@@ -1,7 +1,7 @@
 package com.booklink.models;
 
 public class Book {
-    private String id;
+    private int id;
     private String title;
     private String description;
     private String author;
@@ -33,7 +33,7 @@ public class Book {
         isAvailable = available;
     }
 
-    public Book(String id, String title, String description, String author, String category, String location) {
+    public Book(int id, String title, String description, String author, String category, String location) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -44,11 +44,11 @@ public class Book {
     }
 
     // Getters and setters for new fields
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
