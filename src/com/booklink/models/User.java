@@ -1,6 +1,8 @@
 package com.booklink.models;
 
-public abstract class User {
+import com.booklink.patterns.observer.Observer;
+
+public abstract class User implements Observer {
     private String firstName;
     private String lastName;
     private String email;
@@ -74,4 +76,9 @@ public abstract class User {
 
     // Each subclass defines how permissions are handled
     public abstract void showPermissions();
+
+    @Override
+    public void update(String message) {
+        System.out.println("User " + getFirstName() + " " + getLastName() + " received notification " + message);
+    }
 }
