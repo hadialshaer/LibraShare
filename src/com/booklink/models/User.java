@@ -81,4 +81,9 @@ public abstract class User implements Observer {
     public void update(String message) {
         System.out.println("User " + getFirstName() + " " + getLastName() + " received notification " + message);
     }
+    @Override
+    public String toString() {
+        return "User " + getFirstName() + " " + getLastName() + " (" + getRole() + ")";
+    }
+
 }
