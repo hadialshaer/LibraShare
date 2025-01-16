@@ -3,10 +3,13 @@ package com.booklink.patterns.proxy;
 import com.booklink.models.Book;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BookServiceImp implements BookService {
     private final List<Book> books = new ArrayList<>();
+    private final Map<Integer, Boolean> borrowedBooks = new HashMap<>();
 
     @Override
     public void addBook(Book book) {
@@ -37,49 +40,22 @@ public class BookServiceImp implements BookService {
 
     @Override
     public void borrowBook(int bookId) {
-        Book foundBook = null;
-
-        // Search for the book by its ID
-        for (Book b : books) {
-            if (b.getId() == bookId) {
-                foundBook = b;
-                break;
-            }
-        }
-
-        // Check the outcome of the search
-        if (foundBook == null) {
-            System.out.println("Book not found: " + bookId);
-        } else if (!foundBook.isAvailable()) {
-            System.out.println("Book found but not available: " + foundBook.getTitle());
+        if (borrowedBooks.getOrDefault(bookId, false)) {
+            System.out.println("Book is already borrowed: " + bookId);
         } else {
-            foundBook.setAvailable(false);
-            System.out.println("Borrowed book: " + foundBook.getTitle());
+            borrowedBooks.put(bookId, true);
+            System.out.println("Book borrowed: " + bookId);
         }
     }
-
 
     @Override
     public void returnBook(int bookId) {
-        Book foundBook = null;
-
-        // Search for book by its ID
-        for (Book b: books){
-            if(b.getId() == bookId){
-                foundBook = b;
-                break;
-            }
-        }
-
-        if (foundBook == null){
-            System.out.println("Book not found: " + bookId);
-        }
-        else if (foundBook.isAvailable()){
-            System.out.println("Book found but not borrowed: " + foundBook.getTitle());
-        }
-        else {
-            foundBook.setAvailable(true);
-            System.out.println("Returned book: " + foundBook.getTitle());
+        if (borrowedBooks.getOrDefault(bookId, false)) {
+            borrowedBooks.put(bookId, false);
+            System.out.println("Book returned: " + bookId);
+        } else {
+            System.out.println("Book was not borrowed: " + bookId);
         }
     }
 }
+
