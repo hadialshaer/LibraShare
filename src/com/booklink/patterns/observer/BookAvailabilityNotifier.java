@@ -10,7 +10,6 @@ public class BookAvailabilityNotifier {
     // Map book ID to list of observers interested in that specific book
     private final Map<Integer, List<Observer>> waitingUsers = new HashMap<>();
 
-
     // Users subscribe to a book
     public void subscribe(int bookId, Observer user) {
         List<Observer> observers = waitingUsers.get(bookId);
@@ -18,8 +17,13 @@ public class BookAvailabilityNotifier {
             observers = new ArrayList<>();
             waitingUsers.put(bookId, observers);
         }
-        observers.add(user);
-        System.out.println(user + " subscribed to notifications on book ID: " + bookId);
+        if (!observers.contains(user)) { // Prevent duplicate subscriptions
+            observers.add(user);
+            System.out.println(user + " subscribed to notifications on book ID: " + bookId);
+        }
+        else {
+            System.out.println(user + " is already subscribed to book ID: " + bookId);
+        }
     }
 
     // Users unsubscribe from notifications
