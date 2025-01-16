@@ -60,4 +60,12 @@ public class BookServiceProxy implements BookService {
             System.out.println("Access Denied: Guests cannot subscribe for book notifications");
         }
     }
+
+    public void unsubscribeFromBook(int bookId) {
+        if (currentUser.getRole().equals(UserRole.MEMBER) || currentUser.getRole().equals(UserRole.ADMIN)) {
+            notifier.unsubscribe(bookId, currentUser);
+        } else {
+            System.out.println("Access Denied: Guests cannot unsubscribe from book notifications");
+        }
+    }
 }
