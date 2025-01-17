@@ -1,7 +1,7 @@
-package com.booklink.patterns.builder;
+package com.librashare.patterns.builder;
 
-import com.booklink.models.AdminUser;
-import com.booklink.models.User;
+import com.librashare.models.AdminUser;
+import com.librashare.models.User;
 
 public class AdminUserBuilder implements UserBuilder {
     private final AdminUser adminUser;

@@ -1,8 +1,8 @@
-package com.booklink.patterns.factory;
+package com.librashare.patterns.factory;
 
-import com.booklink.models.User;
-import com.booklink.patterns.builder.GuestUserBuilder;
-import com.booklink.patterns.builder.UserBuilder;
+import com.librashare.models.User;
+import com.librashare.patterns.builder.GuestUserBuilder;
+import com.librashare.patterns.builder.UserBuilder;
 
 public class GuestUserFactory extends UserFactory {
 

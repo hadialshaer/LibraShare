@@ -1,10 +1,10 @@
-package com.booklink.patterns.proxy;
+package com.librashare.patterns.proxy;
 
-import com.booklink.models.Book;
-import com.booklink.models.User;
-import com.booklink.models.UserRole;
-import com.booklink.patterns.observer.BookAvailabilityNotifier;
-import com.booklink.services.BookService;
+import com.librashare.models.Book;
+import com.librashare.models.User;
+import com.librashare.models.UserRole;
+import com.librashare.patterns.observer.BookAvailabilityNotifier;
+import com.librashare.services.BookService;
 
 public class BookServiceProxy implements BookService {
 

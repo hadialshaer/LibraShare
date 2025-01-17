@@ -1,6 +1,6 @@
-package com.booklink.services;
+package com.librashare.services;
 
-import com.booklink.models.Book;
+import com.librashare.models.Book;
 
 public interface BookService {
     void addBook(Book book);

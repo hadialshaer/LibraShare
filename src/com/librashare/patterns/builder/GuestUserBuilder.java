@@ -1,7 +1,7 @@
-package com.booklink.patterns.builder;
+package com.librashare.patterns.builder;
 
-import com.booklink.models.GuestUser;
-import com.booklink.models.User;
+import com.librashare.models.GuestUser;
+import com.librashare.models.User;
 
 public class GuestUserBuilder implements UserBuilder {
     private final GuestUser guestUser;

@@ -1,4 +1,4 @@
-package com.booklink.models;
+package com.librashare.models;
 
 public enum UserRole {
     GUEST,

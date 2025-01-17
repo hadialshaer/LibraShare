@@ -1,4 +1,4 @@
-package com.booklink.patterns.observer;
+package com.librashare.patterns.observer;
 
 import java.util.ArrayList;
 import java.util.HashMap;

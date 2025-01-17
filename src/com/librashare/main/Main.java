@@ -1,15 +1,15 @@
-package com.booklink.main;
+package com.librashare.main;
 
-import com.booklink.models.Book;
-import com.booklink.models.User;
-import com.booklink.patterns.factory.AdminUserFactory;
-import com.booklink.patterns.factory.GuestUserFactory;
-import com.booklink.patterns.factory.MemberUserFactory;
-import com.booklink.patterns.factory.UserFactory;
-import com.booklink.services.BookService;
-import com.booklink.services.BookServiceImp;
-import com.booklink.patterns.proxy.BookServiceProxy;
-import com.booklink.patterns.singleton.DatabaseConnection;
+import com.librashare.models.Book;
+import com.librashare.models.User;
+import com.librashare.patterns.factory.AdminUserFactory;
+import com.librashare.patterns.factory.GuestUserFactory;
+import com.librashare.patterns.factory.MemberUserFactory;
+import com.librashare.patterns.factory.UserFactory;
+import com.librashare.services.BookService;
+import com.librashare.services.BookServiceImp;
+import com.librashare.patterns.proxy.BookServiceProxy;
+import com.librashare.patterns.singleton.DatabaseConnection;
 
 public class Main {
     public static void main(String[] args) {

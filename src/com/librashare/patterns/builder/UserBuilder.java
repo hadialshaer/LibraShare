@@ -1,6 +1,6 @@
-package com.booklink.patterns.builder;
+package com.librashare.patterns.builder;
 
-import com.booklink.models.User;
+import com.librashare.models.User;
 
 public interface UserBuilder {
     UserBuilder setFirstName(String firstName);

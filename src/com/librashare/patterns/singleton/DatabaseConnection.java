@@ -1,4 +1,4 @@
-package com.booklink.patterns.singleton;
+package com.librashare.patterns.singleton;
 
 public class DatabaseConnection {
     private static DatabaseConnection instance;

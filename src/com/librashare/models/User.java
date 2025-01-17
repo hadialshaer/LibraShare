@@ -1,6 +1,6 @@
-package com.booklink.models;
+package com.librashare.models;
 
-import com.booklink.patterns.observer.Observer;
+import com.librashare.patterns.observer.Observer;
 
 public abstract class User implements Observer {
     private String firstName;
