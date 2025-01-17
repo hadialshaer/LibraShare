@@ -1,4 +1,4 @@
-package com.booklink.patterns.proxy;
+package com.booklink.services;
 
 import com.booklink.models.Book;
 
@@ -7,5 +7,8 @@ public interface BookService {
     void removeBook(int bookId);
     void borrowBook(int bookId);
     void returnBook(int bookId);
+
+    //New method to check if a book is borrowed
+    boolean isBookBorrowed(int bookId);
 
 }
