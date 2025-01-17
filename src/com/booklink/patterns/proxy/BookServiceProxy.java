@@ -11,61 +11,89 @@ public class BookServiceProxy implements BookService {
     private final User currentUser;
     private static final BookAvailabilityNotifier notifier = new BookAvailabilityNotifier();
 
-    public BookServiceProxy(BookService realService, User currentUSer) {
+    public BookServiceProxy(BookService realService, User currentUser) {
         this.realService = realService;
-        this.currentUser = currentUSer;
+        this.currentUser = currentUser;
     }
+
     @Override
     public void addBook(Book book) {
-        if (currentUser.getRole().equals(UserRole.ADMIN)) {
+        if (isAdmin()) {
             realService.addBook(book);
         } else {
-            System.out.println("Access Denied: You are not authorized to add books");
+            denyAccess("add books");
         }
     }
 
     @Override
     public void removeBook(int bookId) {
-        if (currentUser.getRole().equals(UserRole.ADMIN)) {
+        if (isAdmin()) {
             realService.removeBook(bookId);
         } else {
-            System.out.println("Access Denied: You are not authorized to remove books");
+            denyAccess("remove books");
         }
     }
 
     @Override
     public void borrowBook(int bookId) {
-        if(currentUser.getRole().equals(UserRole.ADMIN) || currentUser.getRole().equals(UserRole.MEMBER)){
+        if (isMemberOrAdmin()) {
             realService.borrowBook(bookId);
-            System.out.println(currentUser.getFirstName() + " borrowed book: " + bookId);
+            System.out.println("📖 " + currentUser.getFirstName() + " borrowed book: " + bookId);
+        } else {
+            denyAccess("borrow books");
         }
-        else System.out.println("Access Denied: Only members or admin can borrow books.");
     }
 
     @Override
     public void returnBook(int bookId) {
-        if(currentUser.getRole().equals(UserRole.ADMIN) || currentUser.getRole().equals(UserRole.MEMBER)){
-            realService.returnBook(bookId);
-            System.out.println(currentUser.getFirstName() + " returned book: " + bookId);
-            notifier.notifyUsers(bookId); // Notify waiting users
+        if (!isMemberOrAdmin()) {
+            denyAccess("return books");
+            return;
         }
-        else System.out.println("Access Denied: Only members or admin can return books.");
 
+        if (!realService.isBookBorrowed(bookId)) {
+            System.out.println("⚠️Book with ID " + bookId + " was not borrowed. Cannot return.");
+            return;
+        }
+
+        realService.returnBook(bookId);
+        System.out.println("📖 " + currentUser.getFirstName() + " returned book: " + bookId);
+        notifier.notifyUsers(bookId); // Notify waiting users
+    }
+
+    @Override
+    public boolean isBookBorrowed(int bookId) {
+        return realService.isBookBorrowed(bookId);
     }
 
     public void subscribeToBook(int bookId) {
-        if (currentUser.getRole().equals(UserRole.MEMBER) || currentUser.getRole().equals(UserRole.ADMIN)) {
+        if (isMemberOrAdmin()) {
             notifier.subscribe(bookId, currentUser);
         } else {
-            System.out.println("Access Denied: Guests cannot subscribe for book notifications");
+            denyAccess("subscribe for book notifications");
         }
     }
 
     public void unsubscribeFromBook(int bookId) {
-        if (currentUser.getRole().equals(UserRole.MEMBER) || currentUser.getRole().equals(UserRole.ADMIN)) {
+        if (isMemberOrAdmin()) {
             notifier.unsubscribe(bookId, currentUser);
         } else {
-            System.out.println("Access Denied: Guests cannot unsubscribe from book notifications");
+            denyAccess("unsubscribe from book notifications");
         }
+    }
+
+    // 🔹 Helper method: Check if user is admin
+    private boolean isAdmin() {
+        return currentUser.getRole() == UserRole.ADMIN;
+    }
+
+    // 🔹 Helper method: Check if user is member or admin
+    private boolean isMemberOrAdmin() {
+        return currentUser.getRole() == UserRole.ADMIN || currentUser.getRole() == UserRole.MEMBER;
+    }
+
+    // 🔹 Helper method: Print access denied message
+    private void denyAccess(String action) {
+        System.out.println("⛔ Access Denied: You are not authorized to " + action);
     }
 }
