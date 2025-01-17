@@ -27,11 +27,16 @@ A **scalable and community-driven** book-sharing system built in **Java**, apply
 
 ## 📊 Results
 
-*Singletone, Factory, Builder and Proxy - test results*
-![Execution](Results/Singletone_Factory_Builder_Proxy.png)
+### *Singletone, Factory, Builder and Proxy - test results*:
 
-*Observer*
+![Execution](Results/Singletone_Factory_Builder_Proxy_Pattern.png)
+
+
+### *Observer + different test edges*:
+
 ![Execution](Results/Observer.png)
+
+![Execution](Results/Observer_2ANDdifferentTestCases.png)
 
 ## 🚀 **Key Features**
 ✅ **User Roles & Permissions**  
