@@ -1,4 +1,4 @@
-package com.booklink.patterns.proxy;
+package com.booklink.services;
 
 import com.booklink.models.Book;
 import java.util.*;
