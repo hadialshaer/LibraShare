@@ -4,6 +4,7 @@ import com.booklink.models.Book;
 import com.booklink.models.User;
 import com.booklink.models.UserRole;
 import com.booklink.patterns.observer.BookAvailabilityNotifier;
+import com.booklink.services.BookService;
 
 public class BookServiceProxy implements BookService {
 
